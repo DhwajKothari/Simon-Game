@@ -3,6 +3,7 @@ var gamePattern=[];
 var userClickedPattern=[];
 var level =0;
 var started =false;
+var highestLevel=0;
 
 $(document).keypress(function() {
   if (!started) {
@@ -52,7 +53,8 @@ function checkAnswer(currentLevel){
     var wrongSound= new Audio("sounds/wrong.mp3");
     wrongSound.play();
     $("body").addClass("game-over");
-    $("h1").text("Game Over, Press Any Key to Restart")
+    highestLevel=(highestLevel>=level)?highestLevel:level;
+    $("h1").html("Game Over, Press Any Key to Restart.<br><br>You reached till level "+level+"<br>Your Highest Score: "+highestLevel);
 
     setTimeout(function () {
       $("body").removeClass("game-over");
